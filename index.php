@@ -1,13 +1,7 @@
 
 <?php include_once("header.php");?>
 <?php
-// get all courses
-function get_all_courses(){
-    $conn = getDatabaseConnection();
-    $sql = "SELECT * FROM can_courses";
-    $result = $conn->query($sql);
-    return $result;
-}
+
 ?>
     <!-- Main Content -->
     <div class="container">
@@ -44,9 +38,12 @@ function get_all_courses(){
                                     echo "<td>{$row['id']}</td>";
                                     echo "<td>{$row['name']}</td>";
                                     echo "<td>{$row['course_id']}</td>";
-                                    echo "<td>
-                                            <a href='export.php?course_id={$row['id']}' class='btn btn-success btn-sm'>Import Assignments</a>
-                                        </td>";
+                                    echo "<td>";
+                                    ?>
+                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="import-btn">Import Assignments</a>
+                                    <?php
+                                    echo "</td>";
+
                                     echo "</tr>";
                                 }
                              } else {

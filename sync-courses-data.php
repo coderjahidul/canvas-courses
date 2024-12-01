@@ -8,8 +8,6 @@ include_once 'db-connect.php';
 // Connect to the database
 $conn = getDatabaseConnection();
 
-
-
 // get_courses_data_in_api function
 function get_courses_data_in_api($conn){
     // call get api key
@@ -57,24 +55,6 @@ function insert_courses_data_in_db($conn) {
     $truncate_sql = "TRUNCATE TABLE $table_name";
     if ($conn->query($truncate_sql) !== TRUE) {
         die("Error truncating table: " . $conn->error);
-    }
-    
-    // Create the table if it doesn't exist
-    $create_table_sql = "
-        CREATE TABLE IF NOT EXISTS $table_name (
-            id INT NOT NULL AUTO_INCREMENT,
-            course_id INT NOT NULL,
-            name VARCHAR(255) NOT NULL,
-            account_id INT NOT NULL,
-            uuid VARCHAR(255) NOT NULL,
-            course_code VARCHAR(255) NOT NULL,
-            PRIMARY KEY (id)
-        );
-    ";
-    
-    // Run the create table query
-    if ($conn->query($create_table_sql) !== TRUE) {
-        die("Error creating table: " . $conn->error);
     }
     
     // Prepare the SQL query with placeholders

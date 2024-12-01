@@ -10,36 +10,28 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Create table if not exists
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-        id INT NOT NULL AUTO_INCREMENT,
-        api_key VARCHAR(255) NOT NULL,
-        PRIMARY KEY (id)
-    )";
-    $conn->query($sql);
-
     // Get current API key
     $api_key = get_api_key($conn) ?? '';
 
-    // Fetch current API key
-    // $sql = "SELECT * FROM $table_name LIMIT 1";
-    // $result = $conn->query($sql);
-    // $row = $result->fetch_assoc();
-    // $api_key = $row['api_key'] ?? '';
-
-    // If form is submitted, update API key
+    // Update API key
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['api_key'])) {
-        $api_key = $_POST['api_key'];
-
-        // Prepare and execute the update statement
-        $stmt = $conn->prepare("UPDATE $table_name SET api_key = ? WHERE id = 1");
+        $api_key = isset($_POST['api_key']) ? $_POST['api_key'] : '';
+    
+        // Prepare and execute the insert or update statement
+        $stmt = $conn->prepare("
+            INSERT INTO $table_name (id, api_key) 
+            VALUES (1, ?) 
+            ON DUPLICATE KEY UPDATE api_key = VALUES(api_key)
+        ");
         $stmt->bind_param("s", $api_key); // "s" is for string type
+    
         if ($stmt->execute()) {
             $message = "API key updated successfully!";
         } else {
             $message = "Error updating API key: " . $stmt->error;
         }
     }
+    
 ?>
 
 
@@ -58,7 +50,7 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
             <?php 
-                if($message){
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['api_key'])){
                     echo "<div class='alert alert-success mt-3'>$message</div>";
                 }
             ?>
