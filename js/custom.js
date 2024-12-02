@@ -23,31 +23,9 @@ $(document).on('click', '#export-btn', function(e) {
 
     // Get the course_id from the data attribute
     let courseId = $(this).data('course-id');
-    let courseName = $(this).data('name');
 
-    console.log("courseId: " + courseId);
-    // console.log("courseName: " + courseName);
-
-    // AJAX request
-    $.ajax({
-        url: 'export.php', // PHP script handling the request
-        type: 'GET', // HTTP method
-        data: { 
-            course_id: courseId,
-            course_name: courseName
-        }, // Data to send
-        
-        success: function(response) {
-            console.log(response); // Log the entire response for debugging
-            // Print the success message
-            $('#status').html('<div class="alert alert-success">' + "Assignments exported successfully" + '</div>');
-        },
-        error: function(xhr, status, error) {
-            // Handle AJAX error
-            alert('An error occurred: ' + error);
-            console.error(xhr.responseText); // Debugging information
-        }
-    });
+    // Trigger file download
+    window.location.href = `export.php?course_id=${courseId}`;
 });
 
 

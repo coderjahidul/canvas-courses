@@ -40,7 +40,7 @@
                                     echo "<td>{$row['course_id']}</td>";
                                     echo "<td>";
                                     ?>
-                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" data-name="<?php echo $row['name']; ?>" class="btn btn-success btn-sm" id="export-btn">Export Assignments</a>
+                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="export-btn">Export Assignments</a>
                                     <?php
                                     echo "</td>";
 
