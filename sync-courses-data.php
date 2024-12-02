@@ -58,8 +58,8 @@ function insert_courses_data_in_db($conn) {
     }
     
     // Prepare the SQL query with placeholders
-    $sql = "INSERT INTO $table_name (course_id, name, account_id, uuid, course_code) 
-            VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO $table_name (course_id, name, account_id, uuid, course_code, created_at) 
+            VALUES (?, ?, ?, ?, ?, NOW())";
     
     // Prepare statement
     $stmt = $conn->prepare($sql);

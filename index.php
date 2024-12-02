@@ -26,6 +26,7 @@
                                 <th>Course Name</th>
                                 <th>Course ID</th>
                                 <th>Actions</th>
+                                <th>Last Updated</th>
                             </tr>
                         </thead>
                         <tbody id="courseTableBody">
@@ -43,6 +44,7 @@
                                     <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="export-btn">Export Assignments</a>
                                     <?php
                                     echo "</td>";
+                                    echo "<td>" . date("Y-m-d H:i:s", strtotime($row['created_at'])) . "</td>";
 
                                     echo "</tr>";
                                 }

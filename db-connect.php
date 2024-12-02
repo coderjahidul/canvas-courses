@@ -4,7 +4,7 @@ function getDatabaseConnection() {
     // Database configuration
     $host = 'localhost'; // Change this if your database is on another server
     $username = 'root'; // Replace with your database username
-    $password = ''; // Replace with your database password
+    $password = 'password'; // Replace with your database password
     $dbname = 'canvas-courses'; // Your database name
 
     // Create a connection
@@ -30,6 +30,7 @@ function createCanCoursesTable() {
         account_id INT NOT NULL,
         uuid VARCHAR(255) NOT NULL,
         course_code VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     )";
 
