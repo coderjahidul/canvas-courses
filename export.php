@@ -34,7 +34,32 @@ if (isset($_GET['course_id'])) {
             $sheet = $spreadsheet->getActiveSheet();
 
             // Define column headers
-            $headers = ['ID', 'Name', 'Description', 'Due Date', 'Points Possible', 'Submission Types'];
+            $headers = [
+                'ID',
+                'Name',
+                'Description',
+                'Due At',
+                'Unlock At',
+                'Lock At',
+                'Points Possible',
+                'Grading Type',
+                'Assignment Group ID',
+                'Grading Standard ID',
+                'Created At',
+                'Updated At',
+                'Submission Types',
+                'Peer Reviews',
+                'Automatic Peer Reviews',
+                'Position',
+                'Grade Group Students Individually',
+                'Anonymous Peer Reviews',
+                'Group Category ID',
+                'Allowed Attempts',
+                'Submissions Download URL',
+                'Visible To Everyone',
+                'Locked For User',
+                'Lock Explanation'
+            ];
             $columnIndex = 1; // Start from column 1 (A)
             foreach ($headers as $header) {
                 $sheet->setCellValue([$columnIndex, 1], $header); // First row for headers
@@ -48,8 +73,26 @@ if (isset($_GET['course_id'])) {
                 $sheet->setCellValue('B' . $rowNumber, $assignment['name'] ?? '');
                 $sheet->setCellValue('C' . $rowNumber, strip_tags($assignment['description'] ?? ''));
                 $sheet->setCellValue('D' . $rowNumber, $assignment['due_at'] ?? '');
-                $sheet->setCellValue('E' . $rowNumber, $assignment['points_possible'] ?? '');
-                $sheet->setCellValue('F' . $rowNumber, implode(', ', $assignment['submission_types'] ?? []));
+                $sheet->setCellValue('E' . $rowNumber, $assignment['unlock_at'] ?? '');
+                $sheet->setCellValue('F' . $rowNumber, $assignment['lock_at'] ?? '');
+                $sheet->setCellValue('G' . $rowNumber, $assignment['points_possible'] ?? '');
+                $sheet->setCellValue('H' . $rowNumber, $assignment['grading_type'] ?? '');
+                $sheet->setCellValue('I' . $rowNumber, $assignment['assignment_group_id'] ?? '');
+                $sheet->setCellValue('J' . $rowNumber, $assignment['grading_standard_id'] ?? '');
+                $sheet->setCellValue('K' . $rowNumber, $assignment['created_at'] ?? '');
+                $sheet->setCellValue('L' . $rowNumber, $assignment['updated_at'] ?? '');
+                $sheet->setCellValue('M' . $rowNumber, implode(', ', $assignment['submission_types'] ?? []));
+                $sheet->setCellValue('N' . $rowNumber, $assignment['peer_reviews'] ? 'Yes' : 'No');
+                $sheet->setCellValue('O' . $rowNumber, $assignment['automatic_peer_reviews'] ? 'Yes' : 'No');
+                $sheet->setCellValue('P' . $rowNumber, $assignment['position'] ?? '');
+                $sheet->setCellValue('Q' . $rowNumber, $assignment['grade_group_students_individually'] ? 'Yes' : 'No');
+                $sheet->setCellValue('R' . $rowNumber, $assignment['anonymous_peer_reviews'] ? 'Yes' : 'No');
+                $sheet->setCellValue('S' . $rowNumber, $assignment['group_category_id'] ?? '');
+                $sheet->setCellValue('T' . $rowNumber, $assignment['allowed_attempts'] ?? '');
+                $sheet->setCellValue('U' . $rowNumber, $assignment['submissions_download_url'] ?? '');
+                $sheet->setCellValue('V' . $rowNumber, $assignment['visible_to_everyone'] ? 'Yes' : 'No');
+                $sheet->setCellValue('W' . $rowNumber, $assignment['locked_for_user'] ? 'Yes' : 'No');
+                $sheet->setCellValue('X' . $rowNumber, strip_tags($assignment['lock_explanation'] ?? ''));
                 $rowNumber++;
             }
 
