@@ -16,7 +16,7 @@ function get_courses_data_in_api($conn){
     $curl = curl_init();
     
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://csusm.instructure.com/api/v1/courses',
+      CURLOPT_URL => 'https://csusm.beta.instructure.com/api/v1/courses',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

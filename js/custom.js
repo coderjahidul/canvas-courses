@@ -18,6 +18,7 @@ $('#syncBtn').click(function() {
     });
 });
 
+// Handle export button click for assignments excl sheet
 $(document).on('click', '#export-btn', function(e) {
     e.preventDefault(); // Prevent default anchor behavior
 
@@ -26,6 +27,17 @@ $(document).on('click', '#export-btn', function(e) {
 
     // Trigger file download
     window.location.href = `export.php?course_id=${courseId}`;
+});
+
+// Handle export button click for assignments google sheet
+$(document).on('click', '#export-btn-google-sheet', function(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+    // Get the course_id from the data attribute
+    let courseId = $(this).data('course-id');
+
+    // Trigger file download
+    window.location.href = `export-google-sheet.php?course_id=${courseId}`;
 });
 
 

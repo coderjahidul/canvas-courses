@@ -41,7 +41,8 @@
                                     echo "<td>{$row['course_id']}</td>";
                                     echo "<td>";
                                     ?>
-                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="export-btn">Export Assignments</a>
+                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="export-btn">Export Assignments Excl Sheet</a>
+                                    <a href="#" data-course-id="<?php echo $row['course_id']; ?>" class="btn btn-success btn-sm" id="export-btn-google-sheet">Export Assignments Google Sheet</a>
                                     <?php
                                     echo "</td>";
                                     echo "<td>" . date("Y-m-d H:i:s", strtotime($row['created_at'])) . "</td>";
