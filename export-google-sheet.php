@@ -5,7 +5,7 @@ include_once 'helper.php';
 require 'vendor/autoload.php';
 
 function insertDataIntoGoogleSheet($spreadsheetId, $assignments, $sheetName = "Sheet3") {
-    $credentials = __DIR__ . "/credentials.json";
+    $credentials = __DIR__ . "/google-sheet-secrets.json";
 
     $client = new \Google_Client();
     $client->setApplicationName('Canvas Course Exporter');
