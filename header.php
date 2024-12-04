@@ -34,6 +34,9 @@
                         <a class="nav-link <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?php echo $current_page == 'sync-data.php' ? 'active' : ''; ?>" href="sync-data.php">Sync Data</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?php echo $current_page == 'settings.php' ? 'active' : ''; ?>" href="settings.php">Settings</a>
                     </li>
                 </ul>

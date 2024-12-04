@@ -9,14 +9,6 @@
             <div class="col-12">
                 <h1 class="mt-4">Courses and Assignments</h1>
                 <p>Manage your course data seamlessly with our tool.</p>
-
-                <!-- Sync Data Button -->
-                <div id="sync" class="mb-4">
-                    <button class="btn btn-primary" id="syncBtn">Sync Courses Data</button>
-                    <div id="status" class="mt-2"></div>
-                </div>
-                <?php
-                ?>
                 <!-- Course Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">

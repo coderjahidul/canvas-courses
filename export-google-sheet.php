@@ -5,10 +5,19 @@ include_once 'helper.php';
 require 'vendor/autoload.php';
 
 function insertDataIntoGoogleSheet($spreadsheetId, $assignments, $sheetName = "Sheet3") {
-    $credentials = __DIR__ . "/google-sheet-secrets.json";
+    $credentials = __DIR__ . "/credentials.json";
+    if (!file_exists($credentials)) {
+        die("Google Sheets credentials file not found. Please create a credentials.json file and place it in the same directory as this script.");
+    }
+    if(empty($spreadsheetId)) {
+        die("Spreadsheet ID is empty. Please provide a valid spreadsheet ID.");
+    }
+    if(empty($assignments)) {
+        die("Assignments data is empty. Api Not Responding.");
+    }
 
     $client = new \Google_Client();
-    $client->setApplicationName('Canvas Course Exporter');
+    $client->setApplicationName('Canvas Course Assignments Exporter');
     $client->setScopes([\Google_Service_Sheets::SPREADSHEETS]);
     $client->setAuthConfig($credentials);
     $client->setAccessType('offline');
@@ -146,7 +155,7 @@ function insertDataIntoGoogleSheet($spreadsheetId, $assignments, $sheetName = "S
         $params
     );
 
-    return "Successfully Inserted Assignments Data into Sheet: $sheetName";
+    return "Successfully Inserted Assignments Data in Your Google Sheet";
 }
 
 
